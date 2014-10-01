@@ -1,0 +1,28 @@
+input { 
+	redis {
+		data_type => "list"
+		host => "localhost"
+		port => 6399
+		key => "logstash-ushop-logging"
+	}
+
+	redis {
+		data_type => "list"
+		host => "localhost"
+		port => 6399
+		key => "logstash-management-logging"
+	}
+
+	redis {
+		data_type => "list"
+		host => "localhost"
+		port => 6399
+		key => "logstash-monitoring-logging"
+	}
+}
+output { 
+	elasticsearch { 
+		embedded => true
+		embedded_http_port => "9220"
+	} 
+}

@@ -18,12 +18,6 @@ src/CommonAssemblyInfo.cs
 _ReSharper.*/
 [Mm]etric[Rr]esults
 [Pp]ackages
-[Dd]ata/[Rr]aven[Dd]b/[Ss]erver/[Dd]atabase
-[Dd]ata/[Rr]aven[Dd]b/[Ss]erver/[Ll]ogs
-[Dd]ata/[Rr]aven[Dd]b/[Ss]erver/[Aa]nalyzers
-[Dd]ata/[Rr]aven[Dd]b/[Ss]erver/[Rr]aven
-[Dd]ata/eventstore-net/[Dd]ata
-[Dd]ata/eventstore-net/[Dd]ata-logs
 fubu-content
 bottles.cmd
 *.stresult
@@ -56,6 +50,4 @@ deployment
 fubu.cmd
 Gemfile.lock
 logs
-!src/NeoService/Binaries/bin
-!src/LogstashService/Binaries/bin
-!src/ElasticsearchService/Binaries/bin
+!Binaries/bin
