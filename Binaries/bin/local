@@ -1,28 +1,32 @@
 input { 
-	redis {
-		data_type => "list"
-		host => "localhost"
-		port => 6379
-		key => "logstash-ushop-logging"
+	file {
+		path => "C:/Projekt/Mango/Logs/*.log"
+		start_position => "end"
+		exclude => ["*.txt", "NhibernateDatabaseOutput.log" ]
+		type => "mangoweblog"
+		debug => true
+		codec => multiline {
+			pattern => "(?<datetime>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3}) "
+			negate => true
+			what => previous
+		}
 	}
-
-	redis {
-		data_type => "list"
-		host => "localhost"
-		port => 6379
-		key => "logstash-management-logging"
-	}
-
-	redis {
-		data_type => "list"
-		host => "localhost"
-		port => 6379
-		key => "logstash-monitoring-logging"
-	}
+}
+filter {
+  grok {
+	#match => [ "message", "(?<datetime>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3}) (?<loglevel>\[[A-Z]*\]) - (?<source>.*) - (?<ip>.*) - (?<locator>.*) - (?<text>.*)" ]
+	match => [ "message", "(?<datetime>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3}) (?<loglevel>\[[A-Z]*\]) - (?<source>.*) - (?<ip>.*) - (?<locator>.*) - %{GREEDYDATA:text}" ]
+	type => "mangoweblog"
+	
+  }
 }
 output { 
+	stdout {}
 	elasticsearch { 
 		embedded => true
-		embedded_http_port => "9200"
+		embedded_http_port => "9210"
+		index => "mangoweb"
 	} 
+
 }
+

@@ -1,5 +1,9 @@
 input { 
-	redis {
+	file {
+		path => "C:\Projekt\Mango\Logs\APPSTART_20140919.log"
+		start_position => "beginning"
+	}
+	/*redis {
 		data_type => "list"
 		host => "localhost"
 		port => 6389
@@ -18,11 +22,13 @@ input {
 		host => "localhost"
 		port => 6389
 		key => "logstash-monitoring-logging"
-	}
+	}*/
 }
 output { 
-	elasticsearch { 
+	stdout {}
+/*	elasticsearch { 
 		embedded => true
 		embedded_http_port => "9210"
 	} 
+	*/
 }
