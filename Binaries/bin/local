@@ -15,7 +15,7 @@ input {
 filter {
   grok {
 	#match => [ "message", "(?<datetime>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3}) (?<loglevel>\[[A-Z]*\]) - (?<source>.*) - (?<ip>.*) - (?<locator>.*) - (?<text>.*)" ]
-	match => [ "message", "(?<datetime>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3}) (?<loglevel>\[[A-Z]*\]) - (?<source>.*) - (?<ip>.*) - (?<locator>.*) - %{GREEDYDATA:text}" ]
+	match => [ "message", "(?<datetime>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2},[0-9]{3}) (?<loglevel>\[[A-Z]*\]) - (?<source>.*) - (?<ip>%{IPV4}|::1|UNKOWN) - (?<locator>|.*) - %{GREEDYDATA:text}" ]
 	type => "mangoweblog"
 	
   }
