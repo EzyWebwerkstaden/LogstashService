@@ -112,6 +112,7 @@
   </Target>
   -->
   <ItemGroup>
+    <Content Include="Binaries\vendor\jar\elasticsearch-1.1.1\plugins\elasticsearch-http-basic-1.1.0.jar" />
     <Content Include="bottle-service.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
