@@ -84,7 +84,10 @@ namespace LogstashService
 
             var kibanaUrl = ConfigurationManager.AppSettings["Kibana.Url"];
 
-            _kibanaApp = WebApp.Start(kibanaUrl, x => x.UseFileServer(options));
+            if (!string.IsNullOrEmpty(kibanaUrl))
+            {
+                _kibanaApp = WebApp.Start(kibanaUrl, x => x.UseFileServer(options));
+            }
 
             return this;
         }
@@ -96,7 +99,8 @@ namespace LogstashService
             if (_process != null)
                 KillProcessAndChildren(_process.Id);
 
-            _kibanaApp.Dispose();
+            if (_kibanaApp != null)
+                _kibanaApp.Dispose();
         }
 
         private void StartProcess()
