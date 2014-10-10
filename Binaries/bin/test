@@ -30,9 +30,9 @@ filter {
 }
 output { 
 	stdout {}
-	elasticsearch { 
-		embedded => true
-		embedded_http_port => "9210"
+	elasticsearch_http { 
+		host => "localhost"
+		port => 9210
 		index => "mangoweb"
 	} 
 }
