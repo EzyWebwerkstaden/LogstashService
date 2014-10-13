@@ -30,9 +30,13 @@ filter {
 }
 output { 
 	stdout {}
-	elasticsearch_http { 
-		host => "localhost"
-		port => 9210
+	elasticsearch { 
+		cluster => "elasticsearch"
+		host => "0.0.0.0"
+		port => 9310
 		index => "mangoweb"
+		embedded => false
+		flush_size => 100
+		idle_flush_time => 2
 	} 
 }
