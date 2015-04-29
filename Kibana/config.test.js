@@ -41,7 +41,7 @@ function (Settings) {
      *
      * default_route: '/dashboard/elasticsearch/WebLogs',
      */
-    default_route: '/dashboard/file/logstash.json',
+    default_route: '/dashboard/elasticsearch/Mango',
 
     /** @scratch /configuration/config.js/5
      *
